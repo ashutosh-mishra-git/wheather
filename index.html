@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        My wheater app
+    </title>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+  <div class="container">
+
+    <div class="card">
+
+       <div class="headcard">
+      <form action="">
+        <input type="text" id="getData" placeholder="Enter City name">
+        <button class="btn" type="submit" id="sumBtn">Get wheather</button>
+          
+      </form>
+       </div>
+
+     <div class="resultcard">
+      <h2 id="name"></h2>
+      <h2 id="temp"></h2>
+      <h2 id="hum"></h2>
+      
+      
+
+     </div>
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+
+</body>
+<script>
+   
+   const name = document.getElementById('name')
+   const temp = document.getElementById('temp')
+   const hum = document.getElementById('hum')
+   const getData = document.getElementById('getData')
+   const sumBtn = document.getElementById('sumBtn')
+   
+    
+   
+
+  
+   sumBtn.addEventListener('click', async function(e){
+    e.preventDefault();
+    const city = getData.value;
+    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=37894c6385124a66b2fc91215b17251e`;
+    const response =  await fetch(url);
+    const jsonRes = await response.json();
+    name.innerHTML+=`City Name : ${jsonRes.name}`;
+    temp.innerHTML+=`Tempretatur of the city :${jsonRes.main.temp}`;
+    hum.innerHTML+=`Humidity of the city :${jsonRes.main.humidity}`;
+
+
+   })
+   
+
+</script>
+
+</html>
